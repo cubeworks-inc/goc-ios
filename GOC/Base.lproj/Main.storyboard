@@ -101,6 +101,9 @@
                                     <segment title="GOCv1"/>
                                     <segment title="GOCv2"/>
                                 </segments>
+                                <connections>
+                                    <action selector="gocVersionValueChanged:" destination="9pv-A4-QxB" eventType="valueChanged" id="sid-9N-Wnb"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7S-S1-aMW">
                                 <rect key="frame" x="478" y="258" width="72" height="30"/>
@@ -108,6 +111,12 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8F000000008F78000000A512345678D5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OKP-6w-49t">
                                 <rect key="frame" x="20" y="321" width="273" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8000001A0001009BADA512345678" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uus-fK-Sed">
+                                <rect key="frame" x="20" y="346" width="238" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -122,11 +131,13 @@
                             <constraint firstItem="t0s-hz-FKD" firstAttribute="leading" secondItem="Axk-3c-fOj" secondAttribute="leading" id="7lc-Kb-LaW"/>
                             <constraint firstItem="a7S-S1-aMW" firstAttribute="trailing" secondItem="Ywu-90-tEh" secondAttribute="trailing" id="94u-vH-Nv7"/>
                             <constraint firstItem="RlM-nY-CHD" firstAttribute="centerY" secondItem="pfz-Pp-Mlf" secondAttribute="centerY" id="96y-AN-VlN"/>
+                            <constraint firstItem="uus-fK-Sed" firstAttribute="top" secondItem="OKP-6w-49t" secondAttribute="bottom" constant="8" id="A3c-HV-Ad8"/>
                             <constraint firstItem="Axk-3c-fOj" firstAttribute="leading" secondItem="9VO-iq-Gvq" secondAttribute="leading" id="Agf-ZC-j64"/>
                             <constraint firstItem="84i-m9-c3n" firstAttribute="top" secondItem="pfz-Pp-Mlf" secondAttribute="bottom" constant="8" id="BoH-jB-ubs"/>
                             <constraint firstItem="t0s-hz-FKD" firstAttribute="top" secondItem="a7S-S1-aMW" secondAttribute="bottom" constant="8" id="FbX-WW-QsJ"/>
                             <constraint firstItem="a7S-S1-aMW" firstAttribute="top" secondItem="Ywu-90-tEh" secondAttribute="bottom" constant="8" id="IF8-Gq-ZsY"/>
                             <constraint firstItem="hkm-DH-rku" firstAttribute="centerY" secondItem="hZK-nc-vG4" secondAttribute="centerY" id="KBz-TI-Pbl"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="uus-fK-Sed" secondAttribute="leading" id="LF6-6c-BVJ"/>
                             <constraint firstItem="OKP-6w-49t" firstAttribute="top" secondItem="t0s-hz-FKD" secondAttribute="bottom" constant="8" id="NFQ-0L-1vV"/>
                             <constraint firstItem="hZK-nc-vG4" firstAttribute="top" secondItem="pK8-yP-Odw" secondAttribute="bottom" constant="8" id="P0w-tq-YMO"/>
                             <constraint firstItem="mGF-Gl-QGd" firstAttribute="leading" secondItem="pK8-yP-Odw" secondAttribute="trailing" constant="8" id="VyV-kc-MPW"/>

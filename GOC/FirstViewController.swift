@@ -58,6 +58,10 @@ class FirstViewController: UIViewController {
         }
     }
 
+    @IBAction func gocVersionValueChanged(sender: AnyObject) {
+        update()
+    }
+
     func update() {
         updateMessage()
         updateDefaults()
@@ -109,6 +113,8 @@ class FirstViewController: UIViewController {
     }
 
     func updateMessage() {
+        debugPrint("updateMessage")
+
         var allGood = true
         allGood = allGood && validateAddressText()
         allGood = allGood && validateDataText()
@@ -143,7 +149,7 @@ class FirstViewController: UIViewController {
         let payload = addr + data
 
         var message: [UInt8] = []
-        let ret = buildInjectionMessageInterruptForGocV2(payload, message: &message)
+        let ret = buildInjectionMessageInterrupt(payload, message: &message)
         debugPrint("buildInjection done")
         debugPrint(ret)
         debugPrint(message)
@@ -158,12 +164,20 @@ class FirstViewController: UIViewController {
         }
     }
 
-    func buildInjectionMessageInterruptForGocV2 (
+    func buildInjectionMessageInterrupt (
         data: [UInt8],
         run_after: UInt8 = 1,
         inout message: [UInt8]
         ) -> String? {
-        return buildInjectionMessage(data: data, run_after: run_after, memory_address: 0x78, goc_version: 2, message: &message)
+        let goc_version = gocVersionSegmentedControl.selectedSegmentIndex + 1
+        var memory_address: UInt32 = 0
+        if goc_version == 1 {
+            memory_address = 0x1A
+        } else if goc_version == 2 {
+            memory_address = 0x78
+        }
+
+        return buildInjectionMessage(data: data, run_after: run_after, memory_address: memory_address, message: &message)
     }
 
     func buildInjectionMessage (
@@ -185,12 +199,12 @@ class FirstViewController: UIViewController {
         // Data to send
         data: [UInt8] = [],
 
-        // GOC protocol version
-        goc_version: Int = 0,
-
         // Resulting message
         inout message: [UInt8]
         ) -> String? {
+
+        let goc_version = gocVersionSegmentedControl.selectedSegmentIndex + 1
+
         if goc_version == 0 {
             return "Err: Bad GOC version"
         }
@@ -216,26 +230,23 @@ class FirstViewController: UIViewController {
 
         // Memory Address
         if goc_version == 1 {
-            HEADER.append(UInt8(truncatingBitPattern: memory_address.bigEndian >> 8))
-            HEADER.append(UInt8(truncatingBitPattern: memory_address))
+            let memory_address16 = UInt16(memory_address)
+            HEADER.append(UInt8(truncatingBitPattern: memory_address16.bigEndian >> 8))
+            HEADER.append(UInt8(truncatingBitPattern: memory_address16.bigEndian))
         }
 
         // Program Lengh
-        var length: Int32
-        if data.count != 0 {
-            length = Int32(data.count)
+        var length = UInt16(data.count) / 4 // bytes -> words
+        if length != 0 {
             if goc_version == 2 {
                 length -= 1
             }
             if (length < 0) {
                 return "Err: Bad message length"
             }
-            length = length.bigEndian
-        } else {
-            length = 0
         }
-        HEADER.append(UInt8(truncatingBitPattern: length >> 8))
-        HEADER.append(UInt8(truncatingBitPattern: length))
+        HEADER.append(UInt8(truncatingBitPattern: length.bigEndian >> 8))
+        HEADER.append(UInt8(truncatingBitPattern: length.bigEndian))
 
         // Bit-wise XOR parity of header
         var header_parity: UInt8 = 0
