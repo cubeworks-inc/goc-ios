@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             "goc_frequency_slow": 70.0,
             "goc_address": "AA",
             "goc_data": "12345678",
-            "goc_protocl_version": 2,
+            "goc_protocol_version": 2,
             ])
 
         return true
