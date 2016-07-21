@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController/*, UITextFieldDelegate*/ {
+class FirstViewController: UIViewController {
 
     @IBOutlet weak var gocFrequencyTextField: UITextField!
     @IBOutlet weak var gocAddressLabel: UILabel!
@@ -30,17 +30,9 @@ class FirstViewController: UIViewController/*, UITextFieldDelegate*/ {
         gocDataTextField.text = defaults.objectForKey("goc_data") as? String ?? "12345678"
         gocVersionSegmentedControl.selectedSegmentIndex = defaults.integerForKey("goc_protocol_version") - 1
 
-        //gocAddressTextField.delegate = self
-
         let notificationCenter = NSNotificationCenter.defaultCenter()
         let mainQueue = NSOperationQueue.mainQueue()
         let observer = notificationCenter.addObserverForName(UITextFieldTextDidChangeNotification, object: nil, queue: mainQueue) { (notification) -> Void in
-            /*
-            self.updateDefaults()
-            if notification.object === self.gocAddressTextField || notification.object === self.gocDataTextField {
-                self.updateMessage()
-            }
-            */
             self.update()
         }
 
@@ -115,19 +107,6 @@ class FirstViewController: UIViewController/*, UITextFieldDelegate*/ {
             return true
         }
     }
-
-    /*
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if textField == gocAddressTextField {
-            return validateAddressText()
-        }
-        return true;
-    }
-
-    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
-        return validateAddressText()
-    }
-    */
 
     func updateMessage() {
         var allGood = true
