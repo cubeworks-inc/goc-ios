@@ -16,6 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.registerDefaults([
+            "goc_frequency_slow": 70.0,
+            "goc_address": "AA",
+            "goc_data": "12345678",
+            "goc_protocl_version": 2,
+            ])
+
         return true
     }
 
