@@ -17,8 +17,12 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var gocDataTextField: UITextField!
     @IBOutlet weak var gocMessageLabel: UILabel!
     @IBOutlet weak var gocVersionSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var gocSendWakeupButton: UIButton!
+    @IBOutlet weak var gocSendDataButton: UIButton!
 
     var propertyObservers = [NSObjectProtocol]()
+
+    var gocMessage: [UInt8] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +66,18 @@ class FirstViewController: UIViewController {
         update()
     }
 
+    @IBAction func sendWakeupButtonTapped(sender: AnyObject) {
+        let message: [UInt8] = [0x73, 0x94]
+        sendBlinks(message)
+    }
+
+    @IBAction func sendDataButtonTapped(sender: AnyObject) {
+        sendBlinks(gocMessage)
+    }
+
+    func sendBlinks(payload: [UInt8]) {
+    }
+
     func update() {
         updateMessage()
         updateDefaults()
@@ -89,7 +105,7 @@ class FirstViewController: UIViewController {
             return false
         } else if (gocAddressTextField.text! as NSString).length != 2 {
             gocAddressLabel.textColor = UIColor.orangeColor()
-            return false
+            return true
         } else {
             gocAddressLabel.textColor = UIColor.blackColor()
             return true
@@ -122,8 +138,11 @@ class FirstViewController: UIViewController {
         if !allGood {
             gocMessageLabel.textColor = UIColor.redColor()
             gocMessageLabel.text = "Error building message"
+            gocSendDataButton.enabled = false
+            return
         }
         gocMessageLabel.textColor = UIColor.blackColor()
+        gocSendDataButton.enabled = true
 
         // http://stackoverflow.com/questions/30197819/given-a-hexadecimal-string-in-swift-convert-to-hex-value
         // n.b. the simpler-looking char array doesn't handle odd length strings properly
@@ -148,16 +167,15 @@ class FirstViewController: UIViewController {
 
         let payload = addr + data
 
-        var message: [UInt8] = []
-        let ret = buildInjectionMessageInterrupt(payload, message: &message)
+        let ret = buildInjectionMessageInterrupt(payload, message: &gocMessage)
         debugPrint("buildInjection done")
         debugPrint(ret)
-        debugPrint(message)
+        debugPrint(gocMessage)
         if ret != nil {
             gocMessageLabel.text = ret
         } else {
             var s = ""
-            for b in message {
+            for b in gocMessage {
                 s += String(format: "%02X", b)
             }
             gocMessageLabel.text = s
