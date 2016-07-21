@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class FirstViewController: UIViewController {
 
@@ -76,6 +77,44 @@ class FirstViewController: UIViewController {
     }
 
     func sendBlinks(payload: [UInt8]) {
+        /*
+        if let wnd = self.view{
+            let v = UIView(frame: wnd.bounds)
+            v.backgroundColor = UIColor.whiteColor()
+            v.alpha = 1
+
+            wnd.addSubview(v)
+            UIView.animateWithDuration(1, animations: {
+                v.alpha = 0.0
+                }, completion: {(finished:Bool) in
+                    debugPrint("inside")
+                    v.removeFromSuperview()
+            })
+        }
+
+        return
+        */
+
+        let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        if device != nil && device.hasTorch && device.isTorchModeSupported(AVCaptureTorchMode.On) {
+            do {
+                try device.lockForConfiguration()
+
+                for _ in 1...100 {
+                    device.torchMode = AVCaptureTorchMode.On
+                    device.torchMode = AVCaptureTorchMode.Off
+                }
+
+                device.unlockForConfiguration()
+
+                return
+            } catch {
+                // fall through to alert
+            }
+        }
+        let alert = UIAlertController(title: "No Torch", message: "Error accessing the flash on this device.", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
     func update() {
