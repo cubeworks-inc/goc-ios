@@ -269,7 +269,7 @@ $EndComp
 Wire Wire Line
 	5550 2650 5550 2500
 Wire Wire Line
-	6300 2100 5550 2100
+	5550 2100 6300 2100
 Wire Wire Line
 	5550 2100 5550 2200
 Wire Wire Line
@@ -287,17 +287,6 @@ F 2 "Resistors_SMD:R_0603" V 2480 5000 50  0001 C CNN
 F 3 "" H 2550 5000 50  0000 C CNN
 	1    2550 5000
 	0    -1   -1   0   
-$EndComp
-$Comp
-L LED D2
-U 1 1 5792A13B
-P 3050 5000
-F 0 "D2" H 3050 4665 50  0000 C CNN
-F 1 "LED" H 3050 4756 50  0000 C CNN
-F 2 "Squall:CREE_XT-E" H 3050 4847 50  0000 C CNN
-F 3 "" H 3050 5000 50  0000 C CNN
-	1    3050 5000
-	-1   0    0    1   
 $EndComp
 Wire Wire Line
 	2700 5000 2850 5000
@@ -332,7 +321,7 @@ F 3 "" H 3500 6000 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3500 6000 3500 5850
+	3500 5850 3500 6000
 Wire Wire Line
 	3500 5900 3600 5900
 Wire Wire Line
@@ -363,7 +352,7 @@ Wire Wire Line
 Text Label 6200 2250 2    60   ~ 0
 ~REG_SHDN
 Wire Wire Line
-	2400 4400 2200 4400
+	2200 4400 2400 4400
 Wire Wire Line
 	2350 4400 2350 5000
 Wire Wire Line
@@ -375,4 +364,28 @@ Text Label 2900 5450 2    60   ~ 0
 LED_IR
 Text Label 2900 5550 2    60   ~ 0
 LED_WHITE
+$Comp
+L LED_HIGH_POWER D2
+U 1 1 579524D4
+P 3050 5000
+F 0 "D2" H 3050 5305 50  0000 C CNN
+F 1 "LED_HIGH_POWER" H 3050 5214 50  0000 C CNN
+F 2 "Squall:CREE_XT-E" H 3050 5123 50  0000 C CNN
+F 3 "" H 3050 5000 50  0000 C CNN
+	1    3050 5000
+	-1   0    0    -1  
+$EndComp
+Text Label 3200 5250 2    60   ~ 0
+CREE_THERMAL
+Wire Wire Line
+	3250 5150 3250 5250
+Wire Wire Line
+	3250 5250 3200 5250
+Wire Wire Line
+	3200 5150 3250 5150
+Wire Wire Line
+	2650 5750 2800 5750
+Text Label 2650 5750 2    60   ~ 0
+CREE_THERMAL
+NoConn ~ 2800 5750
 $EndSCHEMATC

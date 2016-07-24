@@ -1,3 +1,7 @@
 EESchema-DOCLIB  Version 2.0
 #
+$CMP LED_HIGH_POWER
+K LED
+$ENDCMP
+#
 #End Doc Library
