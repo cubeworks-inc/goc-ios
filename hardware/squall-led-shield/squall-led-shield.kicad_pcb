@@ -235,13 +235,13 @@
       (net 5 "Net-(D1-Pad2)"))
   )
 
-  (module Squall:SQUALL_HEADER (layer F.Cu) (tedit 5794E81C) (tstamp 5794E403)
+  (module Squall:SQUALL_HEADER (layer F.Cu) (tedit 5794F07C) (tstamp 5794E403)
     (at 152.4 101.6)
     (path /57916234)
-    (fp_text reference J1 (at -8.89 0.5) (layer F.SilkS)
+    (fp_text reference J1 (at -8.89 0.5) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value SQUALL_HEADER (at -8.89 -6.85) (layer F.Fab)
+    (fp_text value SQUALL_HEADER (at -8.89 -6.85) (layer F.Fab) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_text user X (at 9.525 2.54) (layer F.SilkS)
