@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /Volumes/code/cubeworks-inc/GOC/hardware/squall-led-shield/squall-led-shield.sch)
-    (date "Sunday, July 24, 2016 'PMt' 12:46:47 PM")
+    (date "Sunday, July 24, 2016 'PMt' 02:34:42 PM")
     (tool "Eeschema (2016-07-14 BZR 6979)-product")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
