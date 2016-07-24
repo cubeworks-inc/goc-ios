@@ -1,8 +1,8 @@
 (kicad_pcb (version 4) (host pcbnew "(2016-07-14 BZR 6979)-product")
 
   (general
-    (links 39)
-    (no_connects 39)
+    (links 40)
+    (no_connects 40)
     (area 139.599364 93.244999 165.200636 114.400636)
     (thickness 1.6)
     (drawings 3)
@@ -476,7 +476,8 @@
     (fp_line (start -0.25 -1.45) (end -0.25 1.45) (layer F.SilkS) (width 0.15))
     (pad 1 smd rect (at -1.1 -0.95 270) (size 1.06 0.65) (layers F.Cu F.Paste F.Mask)
       (net 23 "Net-(L1-Pad2)"))
-    (pad 2 smd rect (at -1.1 0 270) (size 1.06 0.65) (layers F.Cu F.Paste F.Mask))
+    (pad 2 smd rect (at -1.1 0 270) (size 1.06 0.65) (layers F.Cu F.Paste F.Mask)
+      (net 2 GND))
     (pad 3 smd rect (at -1.1 0.95 270) (size 1.06 0.65) (layers F.Cu F.Paste F.Mask)
       (net 25 "Net-(VR1-Pad3)"))
     (pad 4 smd rect (at 1.1 0.95 270) (size 1.06 0.65) (layers F.Cu F.Paste F.Mask)
