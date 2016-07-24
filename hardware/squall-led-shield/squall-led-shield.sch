@@ -391,4 +391,15 @@ NoConn ~ 2800 5750
 Text Label 5400 2100 2    60   ~ 0
 VCC
 Connection ~ 5550 2100
+$Comp
+L CubeWorks-Logo _1
+U 1 1 579536BF
+P 10200 700
+F 0 "_1" H 10200 900 60  0001 C CNN
+F 1 "CubeWorks-Logo" H 10200 1000 60  0001 C CNN
+F 2 "Squall:CubeWorks_Logo-5mm" H 10225 825 60  0001 C CNN
+F 3 "" H 10225 825 60  0001 C CNN
+	1    10200 700 
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

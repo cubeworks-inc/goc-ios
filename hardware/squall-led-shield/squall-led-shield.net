@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /Volumes/code/cubeworks-inc/GOC/hardware/squall-led-shield/squall-led-shield.sch)
-    (date "Sunday, July 24, 2016 'PMt' 04:25:06 PM")
+    (date "Sunday, July 24, 2016 'PMt' 05:59:29 PM")
     (tool "Eeschema (2016-07-14 BZR 6979)-product")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -74,7 +74,13 @@
       (footprint Squall:CREE_XT-E)
       (libsource (lib device) (part LED_HIGH_POWER))
       (sheetpath (names /) (tstamps /))
-      (tstamp 579524D4)))
+      (tstamp 579524D4))
+    (comp (ref _1)
+      (value CubeWorks-Logo)
+      (footprint Squall:CubeWorks_Logo-5mm)
+      (libsource (lib squall) (part CubeWorks-Logo))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 579536BF)))
   (libparts
     (libpart (lib squall) (part AAT1217)
       (fields
@@ -101,6 +107,10 @@
       (pins
         (pin (num 1) (name ~) (type passive))
         (pin (num 2) (name ~) (type passive))))
+    (libpart (lib squall) (part CubeWorks-Logo)
+      (fields
+        (field (name Reference) _)
+        (field (name Value) CubeWorks-Logo)))
     (libpart (lib device) (part INDUCTOR)
       (footprints
         (fp Choke_*)
