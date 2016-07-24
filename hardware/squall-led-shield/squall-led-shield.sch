@@ -269,7 +269,7 @@ $EndComp
 Wire Wire Line
 	5550 2650 5550 2500
 Wire Wire Line
-	5550 2100 6300 2100
+	5400 2100 6300 2100
 Wire Wire Line
 	5550 2100 5550 2200
 Wire Wire Line
@@ -388,4 +388,7 @@ Wire Wire Line
 Text Label 2650 5750 2    60   ~ 0
 CREE_THERMAL
 NoConn ~ 2800 5750
+Text Label 5400 2100 2    60   ~ 0
+VCC
+Connection ~ 5550 2100
 $EndSCHEMATC
