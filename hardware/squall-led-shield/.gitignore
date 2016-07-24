@@ -10,7 +10,8 @@ _autosave-*
 *.tmp
 
 # Netlist files (exported from Eeschema)
-*.net
+# *.net
+# Disagree with gh template, this shouldn't be ignored
 
 # Autorouter files (exported from Pcbnew)
 .dsn
