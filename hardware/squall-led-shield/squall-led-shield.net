@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /Volumes/code/cubeworks-inc/GOC/hardware/squall-led-shield/squall-led-shield.sch)
-    (date "Sunday, July 24, 2016 'AMt' 11:40:45 AM")
+    (date "Sunday, July 24, 2016 'AMt' 11:58:52 AM")
     (tool "Eeschema (2016-07-14 BZR 6979)-product")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -59,6 +59,7 @@
       (tstamp 57928DFE))
     (comp (ref R2)
       (value 18Ω)
+      (footprint Resistors_SMD:R_0603)
       (libsource (lib device) (part R))
       (sheetpath (names /) (tstamps /))
       (tstamp 5792A08A))
