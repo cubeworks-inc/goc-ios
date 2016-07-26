@@ -1,4 +1,4 @@
-update=Thursday, July 21, 2016 'PMt' 07:41:46 PM
+update=Tuesday, July 26, 2016 'PMt' 03:09:58 PM
 version=1
 last_client=kicad
 [pcbnew]
@@ -27,7 +27,7 @@ NetIExt=net
 version=1
 [eeschema]
 version=1
-LibDir=library
+LibDir=library;../../../../lab11/kicad/library
 [eeschema/libraries]
 LibName1=power
 LibName2=device
@@ -59,3 +59,4 @@ LibName27=atmel
 LibName28=contrib
 LibName29=valves
 LibName30=library/squall
+LibName31=logos
