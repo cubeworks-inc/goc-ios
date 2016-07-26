@@ -1,4 +1,4 @@
-update=Tuesday, July 26, 2016 'PMt' 03:09:58 PM
+update=Tuesday, July 26, 2016 'PMt' 03:53:35 PM
 version=1
 last_client=kicad
 [pcbnew]
@@ -60,3 +60,4 @@ LibName28=contrib
 LibName29=valves
 LibName30=library/squall
 LibName31=logos
+LibName32=connectors
