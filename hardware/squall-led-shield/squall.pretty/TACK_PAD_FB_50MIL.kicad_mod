@@ -1,0 +1,10 @@
+(module TACK_PAD_FB_50MIL (layer F.Cu) (tedit 5797F05E)
+  (fp_text reference REF** (at 0 3.81) (layer F.SilkS) hide
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (fp_text value TACK_PAD_FB_50MIL (at 0 -3.81) (layer F.Fab) hide
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (pad 1 smd roundrect (at 0 0) (size 1.27 1.27) (layers F.Cu F.Paste F.Mask)(roundrect_rratio 0.1))
+  (pad 1 smd roundrect (at 0 0) (size 1.27 1.27) (layers B.Cu B.Paste B.Mask)(roundrect_rratio 0.1))
+)
