@@ -2,8 +2,8 @@
 
   (general
     (links 58)
-    (no_connects 10)
-    (area 139.599364 93.244999 165.200636 114.400636)
+    (no_connects 1)
+    (area 137.2318 89.9713 282.218715 163.828)
     (thickness 1.6)
     (drawings 9)
     (tracks 301)
@@ -1500,7 +1500,7 @@
     (effects (font (size 0.6 0.6) (thickness 0.1)))
   )
   (gr_arc (start 152.4 101.6) (end 158.7246 112.141) (angle 136.8114615) (layer Dwgs.User) (width 0.2))
-  (gr_text "Rev A 2016-07-25" (at 155.702 95.758) (layer F.SilkS)
+  (gr_text "Rev A 2016-07-26" (at 155.702 95.758) (layer F.SilkS)
     (effects (font (size 0.5 0.5) (thickness 0.05)) (justify left))
   )
   (gr_text squall-led-shield (at 155.702 94.869) (layer F.SilkS)
