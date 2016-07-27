@@ -2,8 +2,8 @@
 
   (general
     (links 58)
-    (no_connects 0)
-    (area 137.2318 89.9713 282.218715 163.828)
+    (no_connects 10)
+    (area 139.599364 93.244999 165.200636 114.400636)
     (thickness 1.6)
     (drawings 9)
     (tracks 301)
@@ -307,7 +307,7 @@
     (tags "capacitor 0603")
     (path /57928D18)
     (attr smd)
-    (fp_text reference C1 (at 1.905 -0.635) (layer F.SilkS)
+    (fp_text reference C1 (at 0 1.143) (layer F.SilkS)
       (effects (font (size 0.6 0.6) (thickness 0.1)))
     )
     (fp_text value 4.7µF (at 0 1.9 180) (layer F.Fab) hide
@@ -336,7 +336,7 @@
     (tags SC-70-6,)
     (path /579646C6)
     (attr smd)
-    (fp_text reference Q1 (at 2.032 0 180) (layer F.SilkS)
+    (fp_text reference Q1 (at -2.032 0.889 180) (layer F.SilkS)
       (effects (font (size 0.6 0.6) (thickness 0.1)))
     )
     (fp_text value Q_2NMOS (at 0.04064 4.191 180) (layer F.Fab) hide
@@ -393,7 +393,7 @@
     (tags "capacitor 0603")
     (path /57928D63)
     (attr smd)
-    (fp_text reference C2 (at -1.0795 -1.0795 -180) (layer F.SilkS)
+    (fp_text reference C2 (at -1.651 0 -180) (layer F.SilkS)
       (effects (font (size 0.6 0.6) (thickness 0.1)))
     )
     (fp_text value 4.7µF (at 0 1.9 90) (layer F.Fab) hide
@@ -419,7 +419,7 @@
   (module Squall:INDUCTOR_VLF (layer F.Cu) (tedit 57967453) (tstamp 5794E40F)
     (at 149.352 98.425 270)
     (path /57928DFE)
-    (fp_text reference L1 (at 2.286 1.143 90) (layer F.SilkS)
+    (fp_text reference L1 (at 2.286 0.762 180) (layer F.SilkS)
       (effects (font (size 0.6 0.6) (thickness 0.1)))
     )
     (fp_text value 4.7µH (at 0 -4.31 270) (layer F.Fab) hide
@@ -443,7 +443,7 @@
     (tags SOT-23-6)
     (path /57928866)
     (attr smd)
-    (fp_text reference VR1 (at 0 2.032 90) (layer F.SilkS)
+    (fp_text reference VR1 (at -2.286 -1.397 180) (layer F.SilkS)
       (effects (font (size 0.6 0.6) (thickness 0.1)))
     )
     (fp_text value AAT1217 (at 0 2.9 90) (layer F.Fab) hide
@@ -495,7 +495,7 @@
   )
 
   (module Squall:CubeWorks_Logo-5mm (layer F.Cu) (tedit 0) (tstamp 57953BC9)
-    (at 161.671 98.425)
+    (at 161.925 98.425)
     (path /579536BF)
     (fp_text reference _1 (at 0 0) (layer F.SilkS) hide
       (effects (font (thickness 0.3)))
@@ -1212,7 +1212,7 @@
     (tags "capacitor 0603")
     (path /57969500)
     (attr smd)
-    (fp_text reference C3 (at -1.778 0 -180) (layer F.SilkS)
+    (fp_text reference C3 (at -1.651 0 -180) (layer F.SilkS)
       (effects (font (size 0.6 0.6) (thickness 0.1)))
     )
     (fp_text value 10µF (at 0 1.9 90) (layer F.Fab) hide
@@ -1241,7 +1241,7 @@
     (tags SOD-123)
     (path /5796A1B4)
     (attr smd)
-    (fp_text reference D3 (at 2.413 1.27 90) (layer F.SilkS)
+    (fp_text reference D3 (at 2.794 -0.635 180) (layer F.SilkS)
       (effects (font (size 0.6 0.6) (thickness 0.1)))
     )
     (fp_text value D_Schottky (at 0 2.1 270) (layer F.Fab) hide
@@ -1329,7 +1329,7 @@
     (tags "resistor 0603")
     (path /57966E7D)
     (attr smd)
-    (fp_text reference R3 (at -1.143 0.889 90) (layer F.SilkS)
+    (fp_text reference R3 (at -1.397 0.127 180) (layer F.SilkS)
       (effects (font (size 0.6 0.6) (thickness 0.1)))
     )
     (fp_text value 1.02MΩ (at 0 1.9 270) (layer F.Fab) hide
@@ -1358,7 +1358,7 @@
     (tags "resistor 0603")
     (path /57966EE9)
     (attr smd)
-    (fp_text reference R4 (at -1.143 0.889 90) (layer F.SilkS)
+    (fp_text reference R4 (at 1.524 0 180) (layer F.SilkS)
       (effects (font (size 0.6 0.6) (thickness 0.1)))
     )
     (fp_text value 332kΩ (at 0 1.9 270) (layer F.Fab) hide
@@ -1382,7 +1382,7 @@
   )
 
   (module Logos:BLOCK_M_SOLID_100MIL (layer F.Cu) (tedit 0) (tstamp 5797B761)
-    (at 158.242 97.663)
+    (at 158.496 97.536)
     (path /5797B5E9)
     (fp_text reference _2 (at 0 0) (layer F.SilkS) hide
       (effects (font (thickness 0.3)))
@@ -1500,13 +1500,13 @@
     (effects (font (size 0.6 0.6) (thickness 0.1)))
   )
   (gr_arc (start 152.4 101.6) (end 158.7246 112.141) (angle 136.8114615) (layer Dwgs.User) (width 0.2))
-  (gr_text "Rev A 2016-07-25" (at 155.702 96.139) (layer F.SilkS)
+  (gr_text "Rev A 2016-07-25" (at 155.702 95.758) (layer F.SilkS)
     (effects (font (size 0.5 0.5) (thickness 0.05)) (justify left))
   )
-  (gr_text squall-led-shield (at 155.702 95.25) (layer F.SilkS)
+  (gr_text squall-led-shield (at 155.702 94.869) (layer F.SilkS)
     (effects (font (size 0.5 0.5) (thickness 0.05)) (justify left))
   )
-  (gr_text "Pat Pannuto" (at 158.496 94.488) (layer F.SilkS)
+  (gr_text "Pat Pannuto" (at 158.496 94.107) (layer F.SilkS)
     (effects (font (size 0.6 0.6) (thickness 0.05)))
   )
   (gr_line (start 142.748 93.345) (end 162.052 93.345) (layer Edge.Cuts) (width 0.2))
