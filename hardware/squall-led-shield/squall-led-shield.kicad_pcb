@@ -1509,7 +1509,7 @@
   (gr_text "Pat Pannuto" (at 158.496 94.107) (layer F.SilkS)
     (effects (font (size 0.6 0.6) (thickness 0.05)))
   )
-  (gr_line (start 142.748 93.345) (end 162.052 93.345) (layer Edge.Cuts) (width 0.2))
+  (gr_line (start 142.736727 93.358199) (end 162.052 93.345) (layer Edge.Cuts) (width 0.2))
   (gr_text "Squall shield format is 261 degrees of a circle from (380,325mil) to (-380, 325mil)" (at 232.283 162.433) (layer F.Fab)
     (effects (font (size 1.5 1.5) (thickness 0.3)))
   )
