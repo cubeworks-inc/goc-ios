@@ -1,4 +1,9 @@
-/* Blink
+/** 
+ * GOC-IOS firmware
+ *
+ * Andrew Lukefahr
+ * lukefahr@umich.edu
+ *
  */
 
 #include <stdbool.h>
@@ -11,7 +16,7 @@
 
 #include "uart.h"
 
-#define LED 13
+const uint32_t TIMER_LED = 13;
 
 // Some constants about timers
 #define BLINK_TIMER_PRESCALER              0  // Value of the RTC1 PRESCALER register.
@@ -26,12 +31,15 @@ APP_TIMER_DEF(blink_timer);
 
 // Timer callback
 static void timer_handler (void* p_context) {
-    led_toggle(LED);
+    led_toggle(TIMER_LED);
 }
 
 // Setup timer
 static void timer_init(void)
 {
+    // Initialize.
+    led_init(TIMER_LED);
+
     uint32_t err_code;
 
     // Initialize timer module.
@@ -46,7 +54,7 @@ static void timer_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
-// Start the blink timer
+// Start the timer
 static void timer_start(void) {
     uint32_t err_code;
 
@@ -57,12 +65,10 @@ static void timer_start(void) {
 
 int main(void) {
 
-    // Initialize.
-    led_init(LED);
     led_init(23);
     led_on(23);
 
-    led_off(LED);
+    led_off(TIMER_LED);
 
     // Need to set the clock to something
     nrf_clock_lf_cfg_t clock_lf_cfg = {
@@ -78,6 +84,8 @@ int main(void) {
     timer_start();
 
     uart_init();
+
+    goc_init();
 
     // Enter main loop.
     while (1) {
