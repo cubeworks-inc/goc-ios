@@ -10,6 +10,9 @@ APPLICATION_SRCS += nrf_drv_common.c
 APPLICATION_SRCS += nrf_drv_clock.c
 APPLICATION_SRCS += led.c
 
+APPLICATION_SRCS += app_uart.c
+APPLICATION_SRCS += nrf_drv_uart.c
+
 NRF_MODEL = nrf51
 
 SDK_VERSION = 12

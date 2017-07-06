@@ -9,6 +9,7 @@
 #include "app_timer.h"
 #include "softdevice_handler.h"
 
+#include "uart.h"
 
 #define LED 13
 
@@ -75,6 +76,8 @@ int main(void) {
 
     timer_init();
     timer_start();
+
+    uart_init();
 
     // Enter main loop.
     while (1) {
