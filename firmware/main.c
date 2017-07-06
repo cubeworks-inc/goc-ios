@@ -70,6 +70,8 @@ APP_TIMER_DEF(blink_timer);
 // Timer callback
 static void timer_handler (void* p_context) {
     led_toggle(TIMER_LED);
+
+    uart_timer_handler();
 }
 
 // Setup timer

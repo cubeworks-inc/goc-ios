@@ -25,5 +25,6 @@ void uart_write(uint8_t byte);
 void uart_init_buffer( volatile struct uart_buffer * buf);
 int32_t uart_add_buffer( volatile struct uart_buffer * buf);
 
+void uart_timer_handler();
 
 #endif

@@ -19,8 +19,18 @@
 #define UART_RX_BUF_SIZE    512
 #define UART_TX_BUF_SIZE    512
 
+enum uart_timeout_mode {
+    UART_WAITING,
+    UART_DATA,
+    UART_STALE,
+    UART_ERROR
+}; 
+
+
 volatile struct uart_buffer * uart_rx_buf = NULL;
 volatile struct uart_buffer * uart_rx_next_buf = NULL;
+
+enum uart_timeout_mode uart_timeout;
 
 void _uart_event_handle(app_uart_evt_t * p_event);
 
@@ -85,6 +95,19 @@ void uart_write(uint8_t byte)
 }
 
 /**
+ *
+ */
+void uart_timer_handler(void)
+{
+    if (uart_timeout == UART_DATA){
+        uart_timeout = UART_STALE;
+    } else if  (uart_timeout == UART_STALE) {
+        uart_timeout = UART_ERROR;
+    }
+}; 
+
+
+/**
  * callback function for uart events
  */
 void _uart_event_handle(app_uart_evt_t * p_event) {
@@ -114,10 +137,16 @@ void _uart_process_char( const char cr )
     //how many bytes are we still expecting
     static int32_t pending = 3;
 
+    if (uart_timeout == UART_ERROR){
+        _uart_advance_buf(1);
+        pending = 3;
+    }
+
     //append the data
     uart_rx_buf->data[ uart_rx_buf->length] = cr;
     uart_rx_buf->length += 1;
     --pending;
+    uart_timeout = UART_DATA;
 
     //the length of the remaining packet is specified here
     if (uart_rx_buf->length == 3) {
@@ -128,6 +157,7 @@ void _uart_process_char( const char cr )
     if (pending ==  0){
         _uart_advance_buf(0);
         pending = 3;
+        uart_timeout = UART_WAITING;
     }
 }
 
