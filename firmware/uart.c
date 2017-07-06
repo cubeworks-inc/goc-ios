@@ -92,15 +92,15 @@ void _uart_event_handle(app_uart_evt_t * p_event) {
         // ignore
     } else if (p_event->evt_type == APP_UART_FIFO_ERROR) {
         // ignore
-    } else if (p_event->evt_type == APP_UART_DATA) {
-    //} else if (p_event->evt_type == APP_UART_DATA_READY) {
+    //} else if (p_event->evt_type == APP_UART_DATA) {
+    } else if (p_event->evt_type == APP_UART_DATA_READY) {
 
         // Read the UART character
         char cr;
         app_uart_get((uint8_t*) &cr);
-        app_uart_put(cr);
+        //app_uart_put(cr);
 
-        //_uart_process_char(cr);
+        _uart_process_char(cr);
 
     }
 }
@@ -112,13 +112,7 @@ void _uart_event_handle(app_uart_evt_t * p_event) {
 void _uart_process_char( const char cr )
 {
     //how many bytes are we still expecting
-    static int32_t ignore = 0;
     static int32_t pending = 3;
-
-    if (ignore){
-        ignore--;
-        return;
-    }
 
     //append the data
     uart_rx_buf->data[ uart_rx_buf->length] = cr;
@@ -133,7 +127,6 @@ void _uart_process_char( const char cr )
     //we've hit the end of the packet
     if (pending ==  0){
         _uart_advance_buf(0);
-        //ignore = 1;
         pending = 3;
     }
 }
