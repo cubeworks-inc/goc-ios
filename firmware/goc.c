@@ -10,14 +10,11 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
-#include "app_uart.h"
 #include "app_error.h"
 #include "nrf_delay.h"
-#include "nrf_drv_config.h"
 
 #include "goc.h"
 #include "led.h"
-#include "qassert.h"
 
 // NOTE:  the LED driver assumes active-high
 // but we are driving to a FET that is active-low

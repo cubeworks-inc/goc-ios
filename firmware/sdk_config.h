@@ -6,6 +6,13 @@
 #ifdef USE_APP_CONFIG
 #include "app_config.h"
 #endif
+
+
+#ifndef FIFO_ENABLED
+#define FIFO_ENABLED 1
+#endif
+
+
 // <h> nRF_BLE
 
 //==========================================================
@@ -2243,7 +2250,7 @@
 // <e> TIMER_ENABLED - nrf_drv_timer - TIMER periperal driver
 //==========================================================
 #ifndef TIMER_ENABLED
-#define TIMER_ENABLED 0
+#define TIMER_ENABLED 1
 #endif
 #if  TIMER_ENABLED
 // <o> TIMER_DEFAULT_CONFIG_FREQUENCY  - Timer frequency if in Timer mode
