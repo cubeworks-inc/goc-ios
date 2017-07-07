@@ -250,12 +250,14 @@ void _process_cmd_f( struct uart_buffer * buf,
     const int32_t length = buf->data[2];
     qassert(length <= 255);
 
-    //crap, ICE transmits the data LSB->MSB per byte, we need 
-    //the reverse of that... MSB->LSB for the GOC library
-    for (int i = 0; i < length; ++i){
-        data[i] = _reverseBits(data[i]);
-    }
-
+    ////crap, ICE transmits the data LSB->MSB per byte, we need 
+    ////the reverse of that... MSB->LSB for the GOC library
+    //for (int i = 0; i < length; ++i){
+    //    data[i] = _reverseBits(data[i]);
+    //}
+    // EDIT: I rewrote _goc_write to write LSB->MSB to avoid this
+    // I'm a little worried it will cause some jitter on the GOC interface
+    // between packets
     goc_write( data, length);
 
     ret->ack = true;
