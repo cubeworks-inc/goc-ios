@@ -138,6 +138,7 @@ void _goc_default()
 
 /**
  * writes a byte over GOC
+ * now writes the byte LSB->MSB
  */
 void _goc_write_byte( const uint32_t led,  const float freq, const uint8_t byte)
 {    
@@ -154,7 +155,8 @@ void _goc_write_byte( const uint32_t led,  const float freq, const uint8_t byte)
     uint32_t t_long_off_us  = (uint32_t) ((1.0-t_long_duty ) * t_period * 1E6);
     
     uint8_t bit;
-    for (int32_t i = 7; i >= 0 ; --i){
+    //for (int32_t i = 7; i >= 0 ; --i){ // MSB->LSB
+    for (int32_t i = 0; i < 8; ++i){ // LSB->MSB
         bit = (byte>> i) & 0x1; //get 1 bit of byte
 
         //blink on
