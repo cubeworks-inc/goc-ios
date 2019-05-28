@@ -43,14 +43,12 @@ void cmd_return_data_init( struct cmd_return_data * d)
     d->bytes = 0;
 }
 
-void _process_cmd( struct uart_buffer * buf);
+static void _process_cmd( struct uart_buffer * buf);
 
-void _process_cmd_f( struct uart_buffer * buf, 
-                struct cmd_return_data * ret);
-void _process_cmd_O( struct uart_buffer * buf, 
-                    struct cmd_return_data * ret);
-void _process_cmd_o( struct uart_buffer * buf, 
-                    struct cmd_return_data * ret);
+static void _process_cmd_f( struct uart_buffer * buf, struct cmd_return_data * ret);
+static void _process_cmd_n( struct uart_buffer * buf, struct cmd_return_data * ret);
+static void _process_cmd_O( struct uart_buffer * buf, struct cmd_return_data * ret);
+static void _process_cmd_o( struct uart_buffer * buf, struct cmd_return_data * ret);
 uint8_t _reverseBits( uint8_t v);
 
 
@@ -189,21 +187,25 @@ void _process_cmd( struct uart_buffer * buf) {
     } else if (rx_cmd == '?') {
         //ugg, 
         //this one we just have to do by hand...
-        uart_write(0x0);  
+        uart_write(0x0);
         uart_write(rx_event_id);
         uart_write(0x4); //4 command types supported
-        uart_write('?');  
-        uart_write('f');  
-        uart_write('O');  
-        uart_write('o');  
+        uart_write('?');
+        uart_write('f');
+        uart_write('n');
+        uart_write('O');
+        uart_write('o');
         return;
 
     } else if (rx_cmd == 'f') {
         _process_cmd_f(buf, &ret_val);
-        
+
+    } else if (rx_cmd == 'n') {
+        _process_cmd_n(buf, &ret_val);
+
     } else if (rx_cmd == 'O') {
         _process_cmd_O(buf, &ret_val);
-       
+
     } else if (rx_cmd == 'o') {
         _process_cmd_o(buf, &ret_val);
         if (ret_val.ack == false){
@@ -215,7 +217,7 @@ void _process_cmd( struct uart_buffer * buf) {
         //if we don't understand the command, just NAK
         ret_val.ack = false;
     }
-   
+
     //Now we send our response ICE packet over UART
 
     //send the ack/nak
@@ -240,11 +242,11 @@ void _process_cmd( struct uart_buffer * buf) {
 
 
 
-/* 
- * process the 'f' ICE command (GOC message) 
+/*
+ * process the 'f' ICE command (GOC message)
  */
-void _process_cmd_f( struct uart_buffer * buf, 
-                struct cmd_return_data * ret) 
+void _process_cmd_f( struct uart_buffer * buf,
+                struct cmd_return_data * ret)
 {
     uint8_t * data = &(buf->data[3]);
     const int32_t length = buf->data[2];
@@ -262,11 +264,32 @@ void _process_cmd_f( struct uart_buffer * buf,
 }
 
 /*
+ * process the 'n' ICE command (GOC message with Manchester encoding) 
+ */
+void _process_cmd_n( struct uart_buffer * buf,
+                struct cmd_return_data * ret)
+{
+    uint8_t * data = &(buf->data[3]);
+    const int32_t length = buf->data[2];
+    qassert(length <= 255);
+
+    //crap, ICE transmits the data LSB->MSB per byte, we need 
+    //the reverse of that... MSB->LSB for the GOC library
+    for (int i = 0; i < length; ++i){
+        data[i] = _reverseBits(data[i]);
+    }
+
+    goc_write_manchester( data, length);
+
+    ret->ack = true;
+}
+
+/*
  * process the 'O' command
  * query configuration for GOC
  */
-void _process_cmd_O( struct uart_buffer * buf, 
-                    struct cmd_return_data * ret) 
+void _process_cmd_O( struct uart_buffer * buf,
+                    struct cmd_return_data * ret)
 {
     qassert( buf->length >= 5);
     const uint8_t subcmd = buf->data[3];
@@ -302,7 +325,7 @@ void _process_cmd_O( struct uart_buffer * buf,
  * process the 'o' command
  * set GOC variables
  */
-void _process_cmd_o( struct uart_buffer * buf, 
+void _process_cmd_o( struct uart_buffer * buf,
                     struct cmd_return_data * ret)
 {
     ret->ack = false;

@@ -24,6 +24,7 @@ void goc_set_clk( const float clk);
 float goc_get_clk();
 
 void goc_write( const uint8_t * data, const uint32_t size);
+void goc_write_manchester( const uint8_t * data, const uint32_t size);
 
 
 #endif
