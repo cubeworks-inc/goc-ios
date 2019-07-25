@@ -197,8 +197,8 @@ void _goc_write_byte_manchester( const uint32_t led,  const float freq, const ui
     uint32_t t_halfbit_time = (uint32_t) (0.5 * t_period * 1E6);
 
     uint8_t bit;
-    for (int32_t i = 7; i >= 0 ; --i){
-        bit = (byte>> i) & 0x1; //get 1 bit of byte
+    for (int32_t i = 0; i <= 7 ; i++){
+        bit = (byte >> i) & 0x1; //get 1 bit of byte; LSB first
 
         if (bit) {
             // Manchester `1' is `01'
