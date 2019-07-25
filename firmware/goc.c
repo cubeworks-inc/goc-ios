@@ -201,16 +201,16 @@ void _goc_write_byte_manchester( const uint32_t led,  const float freq, const ui
         bit = (byte >> i) & 0x1; //get 1 bit of byte; LSB first
 
         if (bit) {
-            // Manchester `1' is `01'
-            led_off(led);
-            nrf_delay_us ( t_halfbit_time );
+            // Manchester `1' is `01' (active low!)
             led_on(led);
+            nrf_delay_us ( t_halfbit_time );
+            led_off(led);
             nrf_delay_us ( t_halfbit_time );
         } else {
-            // Manchester `0' is `10'
-            led_on(led);
-            nrf_delay_us ( t_halfbit_time );
+            // Manchester `0' is `10' (active low!)
             led_off(led);
+            nrf_delay_us ( t_halfbit_time );
+            led_on(led);
             nrf_delay_us ( t_halfbit_time );
         }
     }
