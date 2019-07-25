@@ -189,7 +189,7 @@ void _process_cmd( struct uart_buffer * buf) {
         //this one we just have to do by hand...
         uart_write(0x0);
         uart_write(rx_event_id);
-        uart_write(0x4); //4 command types supported
+        uart_write(0x5); //5 command types supported
         uart_write('?');
         uart_write('f');
         uart_write('n');
