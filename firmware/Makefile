@@ -27,3 +27,10 @@ SOURCE_PATHS += ./
 
 NRF_BASE_PATH ?= ./nrf5x-base/
 include $(NRF_BASE_PATH)/make/Makefile
+
+# Override some things
+CFLAGS += -O3 -flto
+LDFLAGS += -O3 -flto
+
+# Overwrite this to remove redundant (and wrong) march [needs armv6s-m rather than armv6-m]
+CPUFLAGS := -mthumb -mcpu=cortex-m0
