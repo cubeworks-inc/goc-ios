@@ -189,12 +189,12 @@ void _process_cmd( struct uart_buffer * buf) {
         //this one we just have to do by hand...
         uart_write(0x0);
         uart_write(rx_event_id);
-        uart_write(0x5); //5 command types supported
-        uart_write('?');
-        uart_write('f');
-        uart_write('n');
-        uart_write('O');
-        uart_write('o');
+        uart_write(0x5); // Length field:
+        uart_write('?'); // 1. Can query capabilities
+        uart_write('f'); // 2. Optical flow (GOC v1-3)
+        uart_write('n'); // 3. Manchester (GOC v4)
+        uart_write('O'); // 4. Read GOC config
+        uart_write('o'); // 5. Write GOC config
         return;
 
     } else if (rx_cmd == 'f') {
