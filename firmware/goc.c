@@ -28,7 +28,7 @@ bool _default_on; //LED on normally
 uint32_t _active_led; //which LED to use
 
 static void _goc_write_byte_PWM( const uint32_t led,  const float freq, const uint8_t byte);
-static void _goc_write_byte_manchester( const uint32_t led,  const float freq, const uint8_t byte);
+static void _goc_write_byte_manchester( const uint32_t led,  const uint32_t t_halfbit_time, const uint8_t byte);
 static void _goc_default();
 
 /**
@@ -133,8 +133,15 @@ void goc_write( const uint8_t * data, const uint32_t size)
 void goc_write_manchester( const uint8_t * data, const uint32_t size)
 {
     const uint8_t * const end = data + size;
+
+    //calculate the total length of time to send a bit of goodput
+    const float t_period = 1.0 / _clk_freq;
+
+    //calculate the duration of each Manchester encoded bit
+    const uint32_t t_halfbit_time = (uint32_t) (0.5 * t_period * 1E6);
+
     while ( data != end){
-        _goc_write_byte_manchester(_active_led, _clk_freq , *data);
+        _goc_write_byte_manchester(_active_led, t_halfbit_time , *data);
         data++;
     }
 
@@ -188,14 +195,9 @@ void _goc_write_byte_PWM( const uint32_t led,  const float freq, const uint8_t b
 /**
  * writes a byte over GOC using new Manchester encoding
  */
-void _goc_write_byte_manchester( const uint32_t led,  const float freq, const uint8_t byte)
+__inline__
+static void _goc_write_byte_manchester( const uint32_t led, const uint32_t t_halfbit_time, const uint8_t byte)
 {
-    //calculate the total length of time to send a bit of goodput
-    float t_period = 1.0 / freq;
-
-    //calculate the duration of each Manchester encoded bit
-    uint32_t t_halfbit_time = (uint32_t) (0.5 * t_period * 1E6);
-
     uint8_t bit;
     for (int32_t i = 0; i <= 7 ; i++){
         bit = (byte >> i) & 0x1; //get 1 bit of byte; LSB first
